@@ -1,14 +1,14 @@
-﻿using MgAPI.JSONModels;
-using MgAPI.Authorization;
-using MgAPI.Models;
-using MgAPI.Services;
+﻿using MgAPI.Business.JSONModels;
+using MgAPI.Business.Services.Interfaces;
+using MgAPI.Data.Entities;
+using MgAPI.Services.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MgAPI.Controllers
+namespace MgAPI.Web.Controllers
 {
     [Authorize]
     [ApiController]

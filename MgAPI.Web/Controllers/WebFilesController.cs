@@ -1,23 +1,23 @@
-﻿using MgAPI.JSONModels;
-using MgAPI.Authorization;
-using MgAPI.Models;
-using MgAPI.Services;
+﻿using MgAPI.Business.JSONModels;
+using MgAPI.Business.Services.Interfaces;
+using MgAPI.Data.Entities;
+using MgAPI.Services.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MgAPI.Controllers
+namespace MgAPI.Web.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class FilesController : ControllerBase
+    public class WebFilesController : ControllerBase
     {
-        private IFileService _fileService;
+        private IWebFileService _fileService;
 
-        public FilesController(IFileService fileService)
+        public WebFilesController(IWebFileService fileService)
         {
             _fileService = fileService;
         }
@@ -43,11 +43,11 @@ namespace MgAPI.Controllers
 
         [Authorize(Role.Admin, Role.Moderator)]
         [HttpPost("[action]")]
-        public IActionResult Create(CreateFileRequest model)
+        public IActionResult Create(CreateWebFileRequest model)
         {
             try
             {
-                File file = _fileService.Create(model);
+                WebFile file = _fileService.Create(model);
                 return CreatedAtAction("create", file);
             }
             catch (Exception e)
